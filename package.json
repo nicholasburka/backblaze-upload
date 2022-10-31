@@ -9,7 +9,7 @@
     "test": "npm run build",
     "start": "npm run build && npm run browser-sync"
   },
-  "author": "Matt Welke",
+  "author": "Matt Welke & nab",
   "license": "Unlicense",
   "devDependencies": {
     "browser-sync": "^2.27.10",
