@@ -4,32 +4,94 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Mold Photo Upload - Cornell Tech x JustFix</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .preparing {
+            animation: 3s linear infinite prepare-anim;
+        }
+        .uploading {
+            animation: 4s linear infinite upload-anim;
+        }
+        @keyframes prepare-anim {
+            0% {
+                color: black;
+            }
+            50% {
+                color: gold;
+            }
+            100% {
+                color:  black;
+            }
+        }
+        @keyframes upload-anim {
+            0% {
+                color: black;
+            }
+            50% {
+                color: green;
+            }
+            100% {
+                color:  black;
+            }
+        }
+        .uploaded {
+            transition: 1s;
+            color:  lightgreen;
+        }
+        .upload-container {
+            position: relative;
+          }
+          .upload-container input {
+            border: 1px solid #92b0b3;
+            background: #f1f1f1;
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            padding: 10% 0px 100px 25%;
+            text-align: center !important;
+            width: 100%;
+          }
+          .upload-container input:hover {
+            background: #ddd;
+          }
+          .upload-container:before {
+            position: absolute;
+            bottom: 50px;
+            left: 25%;
+            content: " (or) Drag and Drop files here. ";
+            color: #3f8188;
+            font-weight: 900;
+          }
+          #uploadFileButton {
+            width:  50%;
+            margin-left: 25%;
+            height: 10%;
+          }
+    </style>
     <script src="dist/main.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <h1>B2 Image Browser Upload Test</h1>
+        <h1>Mold Photo Uploader - Cornell Tech x JustFix</h1>
         <div class="row">
             <div class="col-sm">
-                <p>Choose a file to upload and click "Upload".</p>
-                <p>Observe in the network tab as the following steps are performed:</p>
-                <ol>
-                    <li>The upload details are fetched from the running back end.</li>
-                    <li>The preflight (OPTIONS) request for the B2 file upload is performed.</li>
-                    <li>The POST request for the B2 file upload is performed to the upload URL returned from the running
-                        back end.</li>
-                </ol>
+                <p>Hi, we're a team of 4 technologists and researchers at Cornell Tech, working with JustFix to see how we can <b>technologically support low-income tenants</b> and housing justice groups in <b>securing speedy repairs for potentially hazardous housing issues</b>. We've identified <b>housing mold</b> as a place we could potentially provide help, by creating a tool that uses <b>Computer Vision Artificial Intelligence to attempt to identify whether a photo contains hazardous mold</b>. We're currently <b>collecting an initial housing mold dataset and would appreciate any photos of mold you can provide</b>, as well as any metadata about the photos. Anything helps!<br>
+
+<h4>Thank you!</h4> Please feel free to email me with any questions at <b><a href="mailto:nab262@cornell.edu">nab262@cornell.edu</a></b> - Nicholas Agnihotri Burka, Master's student in Connective Media, '23</p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
                 <div class="form-group">
-                    <input type="file" class="" id="uploadFileInput" /><br />
+                    <div class="upload-container">
+                          <input type="file" id="uploadFileInput" multiple />
+                        </div>
+                    <!--<input type="file" class="" id="uploadFileInput" /><br />-->
                     <button class="btn-default" id="uploadFileButton">Upload</button>
+                    <span><h4 id="uploadFileName"></h4><h4 id="uploadFileNum"></h4></span>
+                    <h3 id="uploadStatus"></h3>
                 </div>
             </div>
         </div>

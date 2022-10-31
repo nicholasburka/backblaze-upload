@@ -2,7 +2,7 @@ const getAuthDetails = require('../services/getAuthDetails');
 const getUploadDetails = require('../services/getUploadDetails');
 
 module.exports = async (req, res, next) => {
-    res.set('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.set('Access-Control-Allow-Origin', '*');
 
     try {
         const authDetails = await getAuthDetails();
