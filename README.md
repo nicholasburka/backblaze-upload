@@ -14,7 +14,7 @@ Node.js Express Server - hosted on my Virtual Private Server, server1.nicholasab
 - A node.js script that creates an HTTPS Express Server - in app.js, which routes all GET requests to server1.nicholasab.com/getUploadDetails to a file called getUploadDetails.js (/backend/routes/getUploadDetails.js, which relies on /backend/services/all files)
 - Uses the Backblaze javascript-language Application Programming Interface to fetch an upload URL for the identified bucket (named mold-dataset, and has associated keys / IDs used in the script for the API request)
 - Returns the URL
-- Stays running all the time thanks to a tool called “forever”, which creates a daemon within the VPS to manage the script
+- Stays running all the time thanks to a tool called “forever”, which creates a daemon within the VPS to manage the script https://github.com/foreversd/forever
 
 
 Backblaze backend - a “public” bucket (files accessible through direct links, to view the full buckets contents requires either API keys or my associated Backblaze account information)
