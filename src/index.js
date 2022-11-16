@@ -1,6 +1,6 @@
 import * as CryptoJS from 'crypto-js';
 
-const getUploadDetailsUrl = 'http://localhost:3000/getUploadDetails';
+const getUploadDetailsUrl = 'https://server1.nicholasab.com/getUploadDetails';//'http://server1.nicholasab.com/getUploadDetails';
 
 const getUploadDetails = async () => {
     return new Promise((resolve, reject) => {
@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const uploadFileButton = document.getElementById("uploadFileButton");
     var uploadStatus = document.getElementById("uploadStatus");
     var fileNum = document.getElementById("uploadFileNum");
+    console.log("DOM content loaded");
 
     // When upload button clicked, get upload details and then perform file
     // upload with AJAX.
