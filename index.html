@@ -40,10 +40,10 @@
             transition: 1s;
             color:  lightgreen;
         }
-        .upload-container {
+        #upload-container {
             position: relative;
           }
-          .upload-container input {
+          #upload-container input {
             border: 1px solid #92b0b3;
             background: #f1f1f1;
             outline: 2px dashed #92b0b3;
@@ -52,10 +52,10 @@
             text-align: center !important;
             width: 100%;
           }
-          .upload-container input:hover {
+          #upload-container input:hover {
             background: #ddd;
           }
-          .upload-container:before {
+          #upload-container:before {
             position: absolute;
             bottom: 50px;
             left: 25%;
@@ -63,18 +63,59 @@
             color: #3f8188;
             font-weight: 900;
           }
-          #uploadFileButton {
+          button {
             width:  50%;
             margin-left: 25%;
             height: 10%;
           }
+          input textarea {
+            margin-bottom: 5px;
+            /* To make sure that all text fields have the same font settings
+                 By default, textareas have a monospace font */
+              font: 1em sans-serif;
+
+              /* Uniform text field size */
+              width: 300px;
+              box-sizing: border-box;
+
+              /* Match form field borders */
+              border: 1px solid #999;
+          }
+          #initial-question input {
+            width:  8%;
+          }
+          #initial-question label {
+            margin-left: 13%;
+          }
+
+          #upload-metadata label {
+            display:  inline-block;
+            width:  30%;
+            text-align:  left;
+          }
+          #upload-metadata input {
+            margin-right: 5%;
+          }
+          .hidden { 
+            display:  none;
+          }
     </style>
+    
     <script src="dist/main.js"></script>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages : 'en,es,zh-CN'}, 'google_translate_element');
+    }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>   
+
 </head>
 
 <body>
     <div class="container">
+        
         <h1>Mold & Water Damage Photo Uploader - Cornell Tech x JustFix</h1>
+        <div id="google_translate_element"></div>
         <div class="row">
             <div class="col-sm">
                 <p>Hi, we're a team of 4 technologists and researchers at <a href="https://www.tech.cornell.edu/">Cornell Tech</a>, working with <a href="https://www.justfix.org/en/">JustFix</a> to see how we can <b>technologically support low-income tenants</b> and housing justice groups in <b>securing speedy repairs for potentially hazardous housing issues</b>. We've identified <b>housing mold</b> as a place we could potentially provide help, by creating a tool that <b>catalogs signs that mold is actively growing from pictures of mold and water damage</b> in someone's home, potentially with Computer Vision Artificial Intelligence. We're currently <b>collecting an initial dataset and would appreciate any photos of mold and water damage you can provide</b>, as well as any metadata about the photos. Anything helps!<br>
@@ -85,11 +126,54 @@
         <div class="row">
             <div class="col-sm">
                 <div class="form-group">
-                    <div class="upload-container">
+                    <div id="initial-question">
+                        <legend>Have you already reported mold issues to NYCHA (or another property manager)?</legend>
+                        <label for="Yes">Yes</label><input type="radio" id="alreadyReported" name="reported" />
+                        <label for="No">No</label><input type="radio" id="notReported" name="reported" />
+                        <label for="NotMine">Someone else's mold issue</label><input type="radio" id="notMine" name="reported" /><br>
+                        <button class="btn-default" id="confirmReported">Next</button>
+                    </div>
+                    <div id="intake-directions" class="hidden">
+                        <p id="intake-intro"><b>NYCHA provides an <a href="https://my.nycha.info/MyNYCHA/#/login">online reporting tool</a> for mold and other housing issues, and you can contact the <a href="https://www.courtinnovation.org/programs/red-hook-community-justice-center">Red Hook Justice Center</a> for support. Our tool here can help you thoroughly document your issues before you report them, to save you time later in the process.</b></p>
+
+                        <!--<div id="mold-intake">
+                            <label for="moldArea">Name of this mold area (e.g. "Kitchen 1"): </label><input type="text" id="moldArea" /><br>
+                        </div>-->
+                        <ol>
+                            <li id="mold-instructions"><p>Please take and upload all photos of mold in a particular area of your housing (e.g. two adjacent walls with a long streak of mold, or several small areas of mold that look similar.)</p></li>
+                            <li id="waterdamage-instructions"><p>Please also upload all photos of water damage or leaks in the same particular area of your housing (e.g. if the mold is in the kitchen, any visibly wet spots on the wall, under the sink, around water fixtures, broken caulking.) <b>Documenting water damage is an important part of proving active mold growth, which may be necessary for a repair action from NYCHA.</b></p></li>
+                            <li><p>Please repeat these steps 1 & 2, continuing to upload groups of photos for all relevant areas. (The same uploader below works for each step.) Thank you, and after you've documented your areas, we highly recommend you contact <a href="https://my.nycha.info/MyNYCHA/#/login">NYCHA</a> and the <a href="https://www.courtinnovation.org/programs/red-hook-community-justice-center">Red Hook Community Justice Center.</a></p></li>
+                        </ol>
+                    </div>
+                    <div id="upload-metadata" class="hidden">
+                        <p><b>Please enter some information associated with your photos:</b></p>
+                        <label for="streetAddress">Street address: </label><input type="text" id="streetAddress" /><br>
+
+                        <label for="apt">Apartment number: </label><input type="text" id="apt" value="" /><br>
+
+                        <label for="healthConditions">Health conditions (e.g. asthma): </label><input type="text" id="healthConditions"/><br>
+
+                        <label for="numChildren">Number of children in apt: </label><input type="text" id="numChildren"/><br>
+
+                        <label for="numElderly">Number of elderly (75+) people in apt: </label><input type="text" id="numElderly"/><br>
+
+                        <label for="moldLocation">Where is the mold or leak in the apartment? </label><input type="text" id="moldLocation"/><br>
+
+                        <label for="firstNoticed">When did you first notice the mold/leak? </label><input type="text" id="firstNoticed"/><br>
+
+                        <label for="repair-status">Repair status (check all that apply): </label><br>
+                        <label for="NYCHAFixed">Repaired by NYCHA</label><input type="checkbox" id="NYCHAFixed"/>
+                        <label for="SelfFixed">Repaired myself / third-party</label><input type="checkbox" id="SelfFixed" name="SelfFixed"/>
+                        <label for="Unrepaired">Not repaired</label><input type="checkbox" id="Unrepaired"/>
+                        <label for="Unknown">Don't know</label><input type="checkbox" id="Unknown"/>
+                    </div>
+                    
+                    <div id="upload-container" class="hidden">
                           <input type="file" id="uploadFileInput" multiple />
+                          <button class="btn-default" id="uploadFileButton">Upload</button>
                         </div>
                     <!--<input type="file" class="" id="uploadFileInput" /><br />-->
-                    <button class="btn-default" id="uploadFileButton">Upload</button>
+                    
                     <span><h4 id="uploadFileName"></h4><h4 id="uploadFileNum"></h4></span>
                     <h3 id="uploadStatus"></h3>
                 </div>
