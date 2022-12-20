@@ -1,0 +1,11 @@
+SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at parse (/home/justfix/backblaze-upload/backend/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/justfix/backblaze-upload/backend/node_modules/body-parser/lib/read.js:128:18
+    at AsyncResource.runInAsyncScope (async_hooks.js:193:9)
+    at invokeCallback (/home/justfix/backblaze-upload/backend/node_modules/raw-body/index.js:231:16)
+    at done (/home/justfix/backblaze-upload/backend/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/home/justfix/backblaze-upload/backend/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (events.js:314:20)
+    at endReadableNT (_stream_readable.js:1308:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21)
