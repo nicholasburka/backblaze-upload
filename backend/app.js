@@ -8,10 +8,10 @@ var logger = require('morgan');
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
-const privKey = fs.readFileSync('/etc/letsencrypt/live/server1.nicholasab.com/privkey.pem', 'utf8');
-const cert = fs.readFileSync('/etc/letsencrypt/live/server1.nicholasab.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/server1.nicholasab.com/fullchain.pem', 'utf8');
-var creds = {key: privKey, cert: cert, ca: ca};
+//const privKey = fs.readFileSync('/etc/letsencrypt/live/server1.nicholasab.com/privkey.pem', 'utf8');
+//const cert = fs.readFileSync('/etc/letsencrypt/live/server1.nicholasab.com/cert.pem', 'utf8');
+//const ca = fs.readFileSync('/etc/letsencrypt/live/server1.nicholasab.com/fullchain.pem', 'utf8');
+//var creds = {key: privKey, cert: cert, ca: ca};
 
 //end of above citation
 
@@ -30,9 +30,9 @@ app.use('/getUploadDetails', getUploadDetailsHandler);
 //});
 
 var httpServer = http.createServer(app);
-var httpsServer = https.createServer(creds, app);
+//var httpsServer = https.createServer(creds, app);
 
-httpServer.listen(80);
-httpsServer.listen(443);
+httpServer.listen(1000);
+//httpsServer.listen(1001);
 
 module.exports = app;
