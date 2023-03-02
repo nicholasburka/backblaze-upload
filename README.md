@@ -1,3 +1,5 @@
+Live site at https://nicholasab.com/mold-upload.html
+
 Developed/extended from https://github.com/mattwelke/upload-file-to-backblaze-b2-from-browser-example 
 
 3 main components to the photo upload tool:
